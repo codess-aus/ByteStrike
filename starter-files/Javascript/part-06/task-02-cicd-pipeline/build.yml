@@ -1,0 +1,46 @@
+// TODO: Create GitHub Actions workflow for Node.js
+// This file should be placed at: .github/workflows/build.yml
+//
+// It should include:
+// - Trigger on push and pull requests
+// - Multiple Node.js versions (16.x, 18.x, 20.x)
+// - Lint
+// - Test with coverage
+// - Docker build and push
+// - Publish to npm (on tags)
+
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # TODO: Add Node.js version matrix
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # TODO: Add steps for:
+    # 1. Setup Node.js
+    # 2. Install dependencies
+    # 3. Run linting
+    # 4. Run tests with coverage
+    # 5. Upload coverage
+    # 6. Run security audit
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    # TODO: Only run on main branch
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # TODO: Add steps for:
+    # 1. Build Docker image
+    # 2. Push to registry

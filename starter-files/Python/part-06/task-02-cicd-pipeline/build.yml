@@ -1,0 +1,33 @@
+# TODO: Create a GitHub Actions workflow file
+# This file should be placed at: .github/workflows/build.yml
+# 
+# It should include:
+# - Trigger on push and pull requests
+# - Python test matrix (3.9, 3.10, 3.11)
+# - Linting (flake8)
+# - Testing with coverage (pytest)
+# - Security scanning
+# - Docker build and push
+
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # TODO: Add matrix for Python versions
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # TODO: Add steps for:
+    # 1. Set up Python
+    # 2. Install dependencies
+    # 3. Run linting
+    # 4. Run tests with coverage
+    # 5. Upload coverage results

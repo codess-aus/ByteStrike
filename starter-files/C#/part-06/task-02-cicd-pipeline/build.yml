@@ -1,0 +1,33 @@
+// TODO: Create GitHub Actions workflow for .NET
+// This file should be placed at: .github/workflows/build.yml
+//
+// It should include:
+// - Trigger on push and pull requests
+// - Multiple .NET versions (6.0, 7.0)
+// - Test execution
+// - Code coverage
+// - Docker build and push
+
+name: Build and Test .NET
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # TODO: Add strategy for multiple .NET versions
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # TODO: Add steps for:
+    # 1. Setup .NET
+    # 2. Restore dependencies
+    # 3. Build solution
+    # 4. Run unit tests
+    # 5. Upload test results
+    # 6. Upload coverage
