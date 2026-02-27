@@ -36,58 +36,14 @@ public class BlueprintDecoder
         }
     }
 
-    // Function to format and display secrets in a nice report format
-    // Shows total count, numbered list, and separator line
-    public static void DisplaySecretsReport(List<string> secrets)
-    {
-        string separator = new string('=', 40);
-        Console.WriteLine(separator);
-        Console.WriteLine("DECODED SECRETS REPORT");
-        Console.WriteLine(separator);
-        Console.WriteLine($"Found {secrets.Count} secret(s):\n");
-        for (int i = 0; i < secrets.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {secrets[i]}");
-        }
-        Console.WriteLine(separator);
-    }
-
-    // Function to categorize secrets by their type (word before the colon)
-    public static Dictionary<string, int> CategorizeSecrets(List<string> secrets)
-    {
-        var categories = new Dictionary<string, int>();
-        foreach (var secret in secrets)
-        {
-            string category;
-            if (secret.Contains(':'))
-            {
-                category = secret.Split(':')[0].Trim();
-            }
-            else
-            {
-                category = "UNCLASSIFIED";
-            }
-
-            if (!categories.ContainsKey(category))
-            {
-                categories[category] = 0;
-            }
-            categories[category]++;
-        }
-
-        return categories;
-    }
-
     static void Main()
     {
-        var secrets = DecodeBlueprintSafe("blueprint-data.txt");
-        DisplaySecretsReport(secrets);
+        // Test error handling
+        var secrets1 = DecodeBlueprintSafe("nonexistent.txt");
+        Console.WriteLine($"Found {secrets1.Count} secrets");
 
-        var categories = CategorizeSecrets(secrets);
-        Console.WriteLine("\nSecret Categories:");
-        foreach (var entry in categories)
-        {
-            Console.WriteLine($"  {entry.Key}: {entry.Value}");
-        }
+        // Test normal operation
+        var secrets2 = DecodeBlueprintSafe("blueprint-data.txt");
+        Console.WriteLine($"Found {secrets2.Count} secrets");
     }
 }

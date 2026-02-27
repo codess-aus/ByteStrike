@@ -36,58 +36,27 @@ public class BlueprintDecoder
         }
     }
 
-    // Function to format and display secrets in a nice report format
-    // Shows total count, numbered list, and separator line
+    // Function to format and display secrets in a professional report
+    // Includes header, separator lines, numbered list, and footer
     public static void DisplaySecretsReport(List<string> secrets)
     {
-        string separator = new string('=', 40);
+        string separator = new string('=', 50);
+        Console.WriteLine("\n" + separator);
+        Console.WriteLine("🔐 DECODED SECRETS REPORT".PadRight(50));
         Console.WriteLine(separator);
-        Console.WriteLine("DECODED SECRETS REPORT");
-        Console.WriteLine(separator);
-        Console.WriteLine($"Found {secrets.Count} secret(s):\n");
+        Console.WriteLine($"Total secrets found: {secrets.Count}\n");
+
         for (int i = 0; i < secrets.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {secrets[i]}");
-        }
-        Console.WriteLine(separator);
-    }
-
-    // Function to categorize secrets by their type (word before the colon)
-    public static Dictionary<string, int> CategorizeSecrets(List<string> secrets)
-    {
-        var categories = new Dictionary<string, int>();
-        foreach (var secret in secrets)
-        {
-            string category;
-            if (secret.Contains(':'))
-            {
-                category = secret.Split(':')[0].Trim();
-            }
-            else
-            {
-                category = "UNCLASSIFIED";
-            }
-
-            if (!categories.ContainsKey(category))
-            {
-                categories[category] = 0;
-            }
-            categories[category]++;
+            Console.WriteLine($"  [{i + 1,2}] {secrets[i]}");
         }
 
-        return categories;
+        Console.WriteLine("\n" + separator + "\n");
     }
 
     static void Main()
     {
         var secrets = DecodeBlueprintSafe("blueprint-data.txt");
         DisplaySecretsReport(secrets);
-
-        var categories = CategorizeSecrets(secrets);
-        Console.WriteLine("\nSecret Categories:");
-        foreach (var entry in categories)
-        {
-            Console.WriteLine($"  {entry.Key}: {entry.Value}");
-        }
     }
 }

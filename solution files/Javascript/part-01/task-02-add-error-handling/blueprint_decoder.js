@@ -18,46 +18,15 @@ function decodeBlueprintSafe(filename) {
         return [];
     }
 }
+// Test error handling
+const secrets1 = decodeBlueprintSafe("nonexistent.txt");
+console.log(`Found ${secrets1.length} secrets`);
 
-// Function to format and display secrets in a nice report format
-// Shows total count, numbered list, and separator line
-function displaySecretsReport(secrets) {
-    const separator = "=".repeat(40);
-    console.log(separator);
-    console.log("DECODED SECRETS REPORT");
-    console.log(separator);
-    console.log(`Found ${secrets.length} secret(s):\n`);
-    secrets.forEach((secret, index) => {
-        console.log(`${index + 1}. ${secret}`);
-    });
-    console.log(separator);
-}
-
-// Function to categorize secrets by their type (word before the colon)
-function categorizeSecrets(secrets) {
-    const categories = {};
-    for (const secret of secrets) {
-        const category = secret.includes(":") ? secret.split(":")[0].trim() : "UNCLASSIFIED";
-        categories[category] = (categories[category] ?? 0) + 1;
-    }
-    return categories;
-}
-
-// Use it
-const secrets = decodeBlueprintSafe("blueprint-data.txt");
-displaySecretsReport(secrets);
-
-const categories = categorizeSecrets(secrets);
-console.log("\nSecret Categories:");
-Object.keys(categories)
-    .sort()
-    .forEach((category) => {
-        console.log(`  ${category}: ${categories[category]}`);
-    });
+// Test normal operation
+const secrets2 = decodeBlueprintSafe("blueprint-data.txt");
+console.log(`Found ${secrets2.length} secrets`);
 
 module.exports = {
     decodeBlueprint,
     decodeBlueprintSafe,
-    displaySecretsReport,
-    categorizeSecrets,
 };

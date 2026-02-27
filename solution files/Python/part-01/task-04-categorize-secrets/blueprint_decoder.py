@@ -20,17 +20,19 @@ def decode_blueprint_safe(filename):
         return []
 
 
-# Function to format and display secrets in a nice report format
-# Shows total count, numbered list, and a separator line
+# Function to format and display secrets in a professional report
+# Includes header, separator lines, numbered list, and footer
 def display_secrets_report(secrets):
-    separator = "=" * 40
+    separator = "=" * 50
+    print("\n" + separator)
+    print("DECODED SECRETS REPORT".center(50))
     print(separator)
-    print("DECODED SECRETS REPORT")
-    print(separator)
-    print(f"Found {len(secrets)} secret(s):\n")
+    print(f"Total secrets found: {len(secrets)}\n")
+
     for i, secret in enumerate(secrets, 1):
-        print(f"{i}. {secret}")
-    print(separator)
+        print(f"  [{i:2d}] {secret}")
+
+    print("\n" + separator + "\n")
 
 
 # Function to categorize secrets by their type (word before the colon)

@@ -36,20 +36,20 @@ public class BlueprintDecoder
         }
     }
 
-    // Function to format and display secrets in a nice report format
-    // Shows total count, numbered list, and separator line
+    // Function to format and display secrets in a professional report
+    // Includes header, separator lines, numbered list, and footer
     public static void DisplaySecretsReport(List<string> secrets)
     {
-        string separator = new string('=', 40);
+        string separator = new string('=', 50);
+        Console.WriteLine("\n" + separator);
+        Console.WriteLine("DECODED SECRETS REPORT".PadRight(50));
         Console.WriteLine(separator);
-        Console.WriteLine("DECODED SECRETS REPORT");
-        Console.WriteLine(separator);
-        Console.WriteLine($"Found {secrets.Count} secret(s):\n");
+        Console.WriteLine($"Total secrets found: {secrets.Count}\n");
         for (int i = 0; i < secrets.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {secrets[i]}");
+            Console.WriteLine($"  [{i + 1,2}] {secrets[i]}");
         }
-        Console.WriteLine(separator);
+        Console.WriteLine("\n" + separator + "\n");
     }
 
     // Function to categorize secrets by their type (word before the colon)
